@@ -1,0 +1,64 @@
+*> --------------------------------------------------------------------
+*> Program : STUDENT-MARK
+*> Author  : Rekhashanmuganathan
+*> Date    : 2026-08-04
+*> Version : 1.1
+*> Purpose : Calculate total and average marks for a student across
+*>           three subjects. This version follows basic COBOL coding
+*>           standards and includes inline documentation and improved
+*>           naming for readability and maintainability.
+*> --------------------------------------------------------------------
+
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. STUDENT-MARK.
+       * Optional author/date information
+       AUTHOR. Rekhashanmuganathan.
+       INSTALLATION. SampleTestTraining.
+       DATE-WRITTEN. 2026-08-04.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+
+       *> Working storage for student record and calculations
+       01  WS-STUDENT-RECORD.
+           05  WS-STUDENT-NAME     PIC X(20) VALUE "RAJESH".
+           05  WS-SUB1             PIC 9(3)  VALUE 85.
+           05  WS-SUB2             PIC 9(3)  VALUE 90.
+           05  WS-SUB3             PIC 9(3)  VALUE 78.
+           05  WS-TOTAL            PIC 9(4)  VALUE 0.
+           05  WS-AVG              PIC 9(3)V99 VALUE 0.
+
+       *> Edited field for human-readable average (shows decimal point)
+       01  WS-EDITED-FIELDS.
+           05  WS-AVG-ED           PIC ZZZ.99.
+
+       PROCEDURE DIVISION.
+       MAIN-PROCEDURE.
+           *> Compute total marks from individual subject marks
+           COMPUTE WS-TOTAL = WS-SUB1 + WS-SUB2 + WS-SUB3
+
+           *> Compute average. Use ROUNDED to handle fractions properly
+           COMPUTE WS-AVG = WS-TOTAL / 3 ROUNDED
+
+           *> Move numeric average to an edited field so the decimal
+           *> point is visible when displayed
+           MOVE WS-AVG TO WS-AVG-ED
+
+           *> Display results with clear labels and consistent formatting
+           DISPLAY "--------------------------------------------------"
+           DISPLAY "STUDENT NAME : " WS-STUDENT-NAME
+           DISPLAY "SUBJECT 1     : " WS-SUB1
+           DISPLAY "SUBJECT 2     : " WS-SUB2
+           DISPLAY "SUBJECT 3     : " WS-SUB3
+           DISPLAY "--------------------------------------------------"
+           DISPLAY "TOTAL MARKS   : " WS-TOTAL
+           DISPLAY "AVERAGE       : " WS-AVG-ED
+           DISPLAY "--------------------------------------------------"
+
+           *> Normal program termination
+           STOP RUN.
+
+       * End of program
