@@ -1,1 +1,28 @@
+IDENTIFICATION DIVISION.
+       PROGRAM-ID. STUDENTMARK.
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+
+       DATA DIVISION.
+       WORKING-STORAGE SECTION.
+       01 STUDENT-NAME      PIC X(20) VALUE "RAJESH".
+       01 SUB1              PIC 9(3) VALUE 85.
+       01 SUB2              PIC 9(3) VALUE 90.
+       01 SUB3              PIC 9(3) VALUE 78.
+       01 TOTAL             PIC 9(4).
+       01 AVG               PIC 9(3)V99.
+
+       PROCEDURE DIVISION.
+           COMPUTE TOTAL = SUB1 + SUB2 + SUB3
+           COMPUTE AVG = TOTAL / 3
+
+           DISPLAY "STUDENT NAME: " STUDENT-NAME
+           DISPLAY "SUBJECT 1: " SUB1
+           DISPLAY "SUBJECT 2: " SUB2
+           DISPLAY "SUBJECT 3: " SUB3
+           DISPLAY "TOTAL MARKS: " TOTAL
+           DISPLAY "AVERAGE: " AVG
+
+           STOP RUN.
 
